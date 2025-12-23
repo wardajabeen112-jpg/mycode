@@ -1,0 +1,28 @@
+# Prices of items
+prices = [500, 1200, 300, 700, 900]
+
+# Calculate total price
+def calculate_total(prices):
+    return sum(prices)
+
+# Apply discount based on number of items
+def apply_discount(total, num_items):
+    if 5 <= num_items <= 10:
+        discount = 0.05
+    elif 11 <= num_items <= 20:
+        discount = 0.10
+    elif num_items > 20:
+        discount = 0.15
+    else:
+        discount = 0
+    return total * discount
+
+# Function calls
+total_price = calculate_total(prices)
+discount_amount = apply_discount(total_price, len(prices))
+final_price = total_price - discount_amount
+
+# Output
+print("Total Price:", total_price)
+print("Discount Amount:", discount_amount)
+print("Final Payable Amount:", final_price)
