@@ -1,0 +1,39 @@
+# Attendance data (Student ID, Attendance List)
+attendance_data = [
+    (101, ['P', 'A', 'P', 'P', 'P']),
+    (102, ['P', 'P', 'P', 'A', 'P']),
+    (103, ['A', 'A', 'P', 'P', 'A'])
+]
+
+# Function to calculate attendance percentage
+def attendance_percentage(attendance_data):
+    percentages = {}
+    for student_id, days in attendance_data:
+        present_days = days.count('P')
+        percentages[student_id] = (present_days / len(days)) * 100
+    return percentages
+
+# Function to find students with low attendance
+def low_attendance_students(attendance_data, threshold):
+    percentages = attendance_percentage(attendance_data)
+    return [sid for sid, perc in percentages.items() if perc < threshold]
+
+# Function to count daily absences
+def daily_absences(attendance_data):
+    return [
+        sum(1 for student in attendance_data if student[1][day] == 'A')
+        for day in range(len(attendance_data[0][1]))
+    ]
+
+# Function calls
+percentages = attendance_percentage(attendance_data)
+low_students = low_attendance_students(attendance_data, 75)
+absences = daily_absences(attendance_data)
+
+# Output
+print("Attendance Percentages:")
+for sid, perc in percentages.items():
+    print(f"Student {sid}: {perc}%")
+
+print("Students below attendance threshold:", low_students)
+print("Total absences per day:", absences)
