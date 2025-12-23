@@ -1,0 +1,35 @@
+# Inventory data (item, quantity, reorder_level)
+inventory = [
+    ('Apples', 50, 30),
+    ('Bananas', 10, 20),
+    ('Oranges', 80, 30)
+]
+
+# Price list
+price_list = {
+    'Apples': 5,
+    'Bananas': 3,
+    'Oranges': 4
+}
+
+# Items below reorder level
+def items_to_reorder(inventory):
+    return [item for item, qty, level in inventory if qty < level]
+
+# Total stock value
+def total_stock_value(inventory, price_list):
+    return sum(qty * price_list[item] for item, qty, _ in inventory)
+
+# Overstocked items
+overstocked_items = [
+    item for item, qty, level in inventory if qty > 2 * level
+]
+
+# Function calls
+understocked = items_to_reorder(inventory)
+total_value = total_stock_value(inventory, price_list)
+
+# Output
+print("Items to Reorder:", understocked)
+print("Overstocked Items:", overstocked_items)
+print("Total Stock Value:", total_value)
