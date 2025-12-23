@@ -1,0 +1,57 @@
+lst = [1, [2, [3, 4], 5], 6]
+
+def nested_sum(lst):
+    total = 0
+
+    for item in lst:
+        if type(item) == list:
+            total = total + nested_sum(item)
+        else:
+            total = total + item
+
+    return total
+
+
+
+lst = [1, [2, [3, 4], 5], 6]
+print(nested_sum(lst))
+
+
+
+products = {
+    "Electronics": {"Laptop": 1200, "Phone": 800},
+    "Clothes": {"Shirt": 50, "Shoes": 100},
+    "Grocery": {"Rice": 20, "Milk": 10}
+}
+
+max_price = 0
+max_product = ""
+
+for category in products:
+    for product in products[category]:
+        price = products[category][product]
+
+        if price > max_price:
+            max_price = price
+            max_product = product
+
+print(max_product, max_price)
+
+
+
+def count_frequency(lst, freq):
+    for item in lst:
+        if type(item) == list:
+            count_frequency(item, freq)
+        else:
+            if item in freq:
+                freq[item] = freq[item] + 1
+            else:
+                freq[item] = 1
+
+
+lst = [1, [2, [3, 2, 4], 5, 1], 6]
+frequency = {}
+
+count_frequency(lst, frequency)
+print(frequency)
